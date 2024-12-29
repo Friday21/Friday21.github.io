@@ -6,17 +6,18 @@ author:     "FridayLi"
 catalog: true
 tags:
   - Python
+  - Blog
 ---
 
 # 用Pelican 搭建静态blog
 之所以选用Pelican而不是WordPress, 是因为前者是用Python写的，而后者则是世界上最好的语言， 目前我对最好的语言还不太感兴趣，所以根据网上教程用Pelican搭建了我的第一个博客。 不过现在本博客是用Flask + Bootstrap + Mysql搭建的， 给了我更多的灵活性， 也更加美观一点
 
 ## 搭建环境
-Ubuntu 14.04 LTS
-Pelican 3.3.0
-Apache 2.4.0
-VPS：  digital ocean SFO（非必须，可已选择github page）
-域名解析：Godaddy
+* Ubuntu 14.04 LTS
+* Pelican 3.3.0
+* Apache 2.4.0
+* VPS：  digital ocean SFO（非必须，可已选择github page）
+* 域名解析：Godaddy
 
 ## 环境配置
 安装pelican
@@ -50,6 +51,7 @@ blog/
 `cd /var/www/blog`
 `git clone git://github.com/getpelican/pelican-plugins.git`
 此处将pelican的插件放在`/var/www/blog`的文件夹下
+
 ## 配置pelicanconf.py
 博客的很多内容都是在`/var/www/blog/pelicancof.py`文件中配置的
 ``` python
@@ -58,8 +60,9 @@ SITENAME = u'\u6211\u7684\u7cbe\u795e\u5bb6\u56ed' #博客名字
 SITEURL = 'http://localhost:80' 
 TIMEZONE = 'Asia/Shanghai' #时区改成上海
 THEME = 'pelican-bootstrap3' #主题设置为pelican-bootstrap3
+```
 
-#添加社交账号
+# 添加社交账号
 SOCIAL = (('facebook', 'https://www.facebook.com/li.dongyong?ref=bookmarks'),
           ('twitter','https://twitter.com/dongyongli'),
           ('github','https://github.com/Friday21'),)
@@ -112,7 +115,7 @@ git push -u origin master
 ```
 成功后访问username.github.io即能成功看到你的blog
 
-##Apache 配置
+## Apache 配置
 如果不想用github page当然也可以用自己的VPS，让blog运行在Apache上
 * 安装Apache
 `sudo apt-get install apache2`
@@ -249,7 +252,7 @@ var duoshuoQuery = {short_name:"lyon0804"};
 然后在pelicanconf.py中添加DUOSHUO_SITENAME字段，make publish 即可生效，我在多说网站上填的是fridayhaohao，所以我添加了`DUOSHUO_SITENAME = 'fridayhaohao'`
 
 
-###Google站内搜索
+### Google站内搜索
 pelican自带的tipue_search用起来bug多多，果断换成高大上的Google站内搜索 ，根据网上的指导自己怎么做都不成功，最终折腾的结果是在pelicanconf中启用tipue_search（因为我懒得去调搜索框的大小），但是把search.html内容换成Google站内搜索的代码，搞定！(pelican-bootstrap3似乎没有bootstrap2的Google搜索内置代码，坑！)
 * 启用tipue_search
 在PLUGINS中添加tipue_search
@@ -340,8 +343,8 @@ DIRECT_TEMPLATES = ('index', 'categories', 'authors', 'archives', 'tags','search
   }, true);
 </script>
 </body>
-</html>
-```
+</html>```
+
 make publish 生效，但是**局域网**内上不了Google，所以搜索功能只能翻墙使用，但对我来说不算问题，blog搜索功能主要还是自己用
 
 ### 参考文章
