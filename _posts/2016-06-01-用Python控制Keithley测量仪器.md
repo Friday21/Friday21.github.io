@@ -3,12 +3,12 @@ layout:     post
 title:      "用Python控制Keithley测量仪器"
 date:       2016-06-01
 author:     "FridayLi"
-catalog: true
+catalog: false
 tags:
   - Python
 ---
 
-#背景
+# 背景
 作为一名凝聚态物理学生，做科研的大部分时间都在和各种测量仪器打交道，我最常用的要数Keithley 2400, 2410等测量电信号的仪器了，Keithley仪器的分辨率还是很高的，2400测量电压和电流都能精确到纳(10^-9)的量级，6517更是能达到皮（10^-12）的量级, 非常了不起。实验室用来控制这几台仪器的程序都是Labview程序，属于G语言吧，研一刚进实验室的时候师姐给我讲了一个多小时才给我讲明白一个简单测量IV的程序流程，研一寒假前为了能够实现Labview调用的子程序中的一个参数能够在图表上实时显示，费了老大劲了，虽然最终实现了，但现在基本忘记怎么做的了，总之很复杂。看一下Labview的程序（其实就是画图啦：  
 
 ![描述](/img/old-post/8688e1980f7a58fbcf27d7d26ebeab2c.PNG)  
@@ -16,11 +16,11 @@ tags:
 
 前面板UI还好，但后面板程序图真是太不具有可读性啦，扩展性也很差，想添加个新功能得画半天图，于是我想如果能用Python控制这些测量仪器就好啦，这样就可以把每个测量功能封装成一个函数，需要扩展新功能的话直接调用再修改就好啦，抱着试试看的态度（买了一疗程）在github上搜索Keithley真的搜出来几条Python写的控制程序，好开心，于是下定决心把自己常用的几个Labview测量程序Python化！
 
-#1. 环境搭建
+# 1. 环境搭建
 首先是接口的连接，要通过Python连接上GPIB接口需要对应的库，这里用到的是pyvisa, 官方教程在[这里](https://pyvisa.readthedocs.org/en/stable/), 我用的Python IDE是pycharm，所以直接在pycharm上搜索安装pyvisa就好了（真的很方便），但根据pyvisa的说明还需要安装 National Instruments’s VISA ，去[官网](http://search.ni.com/nisearch/app/main/p/ap/tech/lang/zhs/pg/1/sn/ssnav:ndr/fil/AND(nicontenttype:driver,%20sitesection:ndr,%20AND%20(OR(nigen10:1640,%20productcategories:1640,%20%22NI-VISA%22)%20,%20OR(nilanguage:zh-CN,%20nilanguage:en))下载适合自己电脑的版本，由于目前Linux平台只支持32位的，而我的是Ubuntu 14.04LTS，没办法，只好装在win10上了，pyvisa和National Instruments’s VISA都安装成功后就可以进行下一步了  
 
 
-#2. 连接仪器
+# 2. 连接仪器
 如果用的台式机，又有GPIB扩展槽，直接连上仪器就行了，我用的笔记本，所以还需要一条USB-GPIB线，这里用的是KUSB-488A  ，第一次用肯定要装驱动的，若不能自动安装则需要去官网下载驱动，一切就绪后，执行以下Python语句以检测是否成功连上仪器：
 ```
 import visa
@@ -85,7 +85,7 @@ def IV_sweep(start=-3, end=3, step=60, delay=100, interval=300):
     close_inst(inst)
 ```
 这样测量结果就保存在两个list当中了，这当然不是我们要的最终结果，还需要把测量到的数据保存到文件中，而且测量过程中要实时绘图，保存数据到文件中比较基本，就不多说了，可以参考我上传到github上的[代码](https://github.com/Friday21/Keithley_measure)，接下来说一说在Python下怎么实现动态绘图
-#4. matplotlib实时绘图
+# 4. matplotlib实时绘图
 Python有一个很好的绘图的第三方库——**matplotlib**, 可以实现和matlab相媲美的绘图功能，相当好用。
 * 用matplotlib简单的绘图
 ```python
@@ -123,7 +123,7 @@ plt.show()
 
 
 再加上保存数据到文件的功能后就可以实现和Labview同样的功能啊，看了下代码，100行，虽然也不短，但逻辑很清楚，以后便于修改，下面一个例子将充分体现Python对Labview的优势。  
-#5. 温度控制
+# 5. 温度控制
 其实不仅仅是Keithley，其它GPIB连接的仪器也可以同样用Python控制，比如温度控制仪model 331  
 下面是一个温度控制的小程序：
 ```python
