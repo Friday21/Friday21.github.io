@@ -17,7 +17,7 @@ tags:
 前面板UI还好，但后面板程序图真是太不具有可读性啦，扩展性也很差，想添加个新功能得画半天图，于是我想如果能用Python控制这些测量仪器就好啦，这样就可以把每个测量功能封装成一个函数，需要扩展新功能的话直接调用再修改就好啦，抱着试试看的态度（买了一疗程）在github上搜索Keithley真的搜出来几条Python写的控制程序，好开心，于是下定决心把自己常用的几个Labview测量程序Python化！
 
 # 1. 环境搭建
-首先是接口的连接，要通过Python连接上GPIB接口需要对应的库，这里用到的是pyvisa, 官方教程在[这里](https://pyvisa.readthedocs.org/en/stable/), 我用的Python IDE是pycharm，所以直接在pycharm上搜索安装pyvisa就好了（真的很方便），但根据pyvisa的说明还需要安装 National Instruments’s VISA ，去[官网](http://search.ni.com/nisearch/app/main/p/ap/tech/lang/zhs/pg/1/sn/ssnav:ndr/fil/AND(nicontenttype:driver,%20sitesection:ndr,%20AND%20(OR(nigen10:1640,%20productcategories:1640,%20%22NI-VISA%22)%20,%20OR(nilanguage:zh-CN,%20nilanguage:en))下载适合自己电脑的版本，由于目前Linux平台只支持32位的，而我的是Ubuntu 14.04LTS，没办法，只好装在win10上了，pyvisa和National Instruments’s VISA都安装成功后就可以进行下一步了  
+首先是接口的连接，要通过Python连接上GPIB接口需要对应的库，这里用到的是pyvisa, 官方教程在[这里](https://pyvisa.readthedocs.org/en/stable/), 我用的Python IDE是pycharm，所以直接在pycharm上搜索安装pyvisa就好了（真的很方便），但根据pyvisa的说明还需要安装 National Instruments’s VISA ，去[官网]("http://search.ni.com/nisearch/app/main/p/ap/tech/lang/zhs/pg/1/sn/ssnav:ndr/fil/AND(nicontenttype:driver,%20sitesection:ndr,%20AND%20(OR(nigen10:1640,%20productcategories:1640,%20%22NI-VISA%22)%20,%20OR(nilanguage:zh-CN,%20nilanguage:en)")下载适合自己电脑的版本，由于目前Linux平台只支持32位的，而我的是Ubuntu 14.04LTS，没办法，只好装在win10上了，pyvisa和National Instruments’s VISA都安装成功后就可以进行下一步了  
 
 
 # 2. 连接仪器
