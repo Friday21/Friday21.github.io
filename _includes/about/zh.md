@@ -10,16 +10,10 @@
 
 ## 工作经历  
 
-### 微软 – M365 – Performance Team  
+### 微软 – M365 – Resilience Team  
 **2022/07/11 ~ 至今**  
 - 负责 Resilience Platform 的开发，专注于提升 M365 产品的 Resilience 性能。  
 - 与 ECS（Experimentation & Configuration Service）团队合作，利用多种故障注入工具验证和提升服务的 Resilience。  
-
----
-
-### 微策略  
-**2022/05/17 ~ 2022/06/17**  
-- 培训阶段主要熟悉微策略的云迁移技术，后续将负责产品的云迁移工作。  
 
 ---
 
